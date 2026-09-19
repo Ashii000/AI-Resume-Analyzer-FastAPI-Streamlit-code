@@ -1,102 +1,141 @@
-# AI Resume Analyzer & ATS Score Checker
+# 📄 AI-Powered Resume Analyzer & Career Copilot
 
-## Project Description
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-Auth-black?style=for-the-badge&logo=json-web-tokens)
 
-The AI Resume Analyzer & ATS Score Checker is a production-ready, full-stack web application designed to help job seekers evaluate and optimize their resumes against Applicant Tracking System (ATS) criteria. The system leverages a FastAPI backend and a Streamlit front-end to provide document parsing for PDF and DOCX formats, ATS compatibility scoring, and generative AI-assisted resume rewriting.
+An enterprise-grade, full-stack AI application designed to revolutionize the job application process. This platform provides automated ATS (Applicant Tracking System) scoring, AI-driven resume rewriting, dynamic cover letter generation, and mock interview preparation.
 
-## Installation Guide
+Built with a **FastAPI backend** for high-performance processing and a **Streamlit frontend** for a seamless user experience.
 
-### Step 1: Create and Activate a Virtual Environment
+---
 
-A Python virtual environment isolates project dependencies from the system Python installation.
+## 🚀 Core Features
 
-```bash
-python -m venv .venv
+### 🧠 AI & Parsing Engine
+* **Intelligent Resume Parsing:** Accurately extracts text, skills, and entities from PDF and DOCX files.
+* **ATS Compatibility Scoring:** Evaluates resumes against specific Job Descriptions (JDs) calculating similarity and keyword matches.
+* **AI Resume Rewriter:** Automatically enhances bullet points and summaries using advanced LLM prompts for maximum impact.
+* **Cover Letter Generator:** Drafts highly tailored cover letters based on the parsed resume and target job description.
+* **Interview Prep Module:** Generates potential interview questions and strategies based on candidate profile gaps.
+
+### 🔐 Security & User Management
+* **JWT Authentication:** Secure OAuth2 login and registration system.
+* **User Dashboard:** Personalized dashboard to track ATS scores, saved resumes, and job matches.
+* **Profile Management:** Secure storage of user data and historical analysis.
+
+### 📊 Interactive UI/UX
+* **Data Visualization:** Beautiful charts and graphs displaying ATS score breakdowns and skill gaps.
+* **Multi-Page App Structure:** Clean navigation across Dashboard, ATS Report, Rewriter, Cover Letter, and Interview pages.
+
+---
+
+## 🛠️ Technology Stack
+
+* **Frontend:** Streamlit, Custom CSS/JS
+* **Backend:** Python, FastAPI, Uvicorn
+* **Database & Auth:** SQLAlchemy/Pydantic (Schemas), JWT (JSON Web Tokens), OAuth2
+* **AI/NLP:** Large Language Models (LLMs), LangChain, Custom Prompt Engineering
+* **Document Processing:** PyPDF2, python-docx
+* **DevOps:** Docker, Docker Compose
+
+---
+
+## 📁 System Architecture
+
+The project follows a decoupled architecture, separating the client-side Streamlit application from the robust FastAPI backend.
+
+```text
+AI-Resume-Analyzer/
+├── app/                      # FastAPI Backend Core
+│   ├── api/                  # API Routers (auth, resume, ats, jobs)
+│   ├── auth/                 # JWT & Hashing Logic
+│   ├── database/             # ORM Models & Schemas
+│   ├── prompts/              # LLM System Prompts
+│   └── services/             # Core Logic (AI, Parsers, Matchers)
+├── streamlit_app/            # Streamlit Frontend UI
+│   ├── components/           # Reusable UI elements (navbar, sidebar)
+│   └── pages/                # Streamlit Pages (Dashboard, Login, etc.)
+├── data/                     # Reference Datasets (skills, universities)
+├── docs/                     # Technical Documentation
+├── docker/                   # Containerization configs
+└── tests/                    # Pytest suite
 ```
 
-- On Windows:
-  ```bash
-  .\.venv\Scripts\activate
-  ```
-- On macOS / Linux:
-  ```bash
-  source .venv/bin/activate
-  ```
+---
 
-### Step 2: Install Dependencies
+## 💻 Installation & Setup
 
-Install all required Python packages from the requirements file.
+### Method 1: Local Development Setup
 
+**1. Clone the repository:**
+```bash
+git clone https://github.com/Ashii000/AI-Resume-Analyzer-FastAPI-Streamlit-code.git
+cd AI-Resume-Analyzer-FastAPI-Streamlit-code
+```
+
+**2. Create a virtual environment:**
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+**3. Install dependencies:**
 ```bash
 pip install -r requirements.txt
 ```
 
-## Setup Instructions
+**4. Set up Environment Variables:**
+Create a `.env` file in the root directory based on `.env.example` (add your LLM API keys, Database URL, and JWT Secret).
 
-1. Copy the example environment file to create your local configuration.
+**5. Run the Application:**
+You will need two terminals to run the backend and frontend simultaneously.
 
-   ```bash
-   cp .env.example .env
-   ```
+* **Terminal 1 (Backend - FastAPI):**
+  ```bash
+  uvicorn app.main:app --reload
+  ```
+  *API Docs available at: `http://localhost:8000/docs`*
 
-2. Edit the `.env` file to set the required secret values.
+* **Terminal 2 (Frontend - Streamlit):**
+  ```bash
+  streamlit run streamlit_app/Home.py
+  ```
+  *App available at: `http://localhost:8501`*
 
-## Usage Instructions
+### Method 2: Docker Setup
 
-1. **Initialize and Run the Backend:** Start the FastAPI server and initialize the local database.
+For a hassle-free setup, you can use Docker Compose to spin up the entire stack.
 
-   ```bash
-   python run.py
-   ```
+```bash
+cd docker
+docker-compose up --build
+```
 
-2. **Launch the Front-End:** Open a separate terminal, activate the virtual environment, and start the Streamlit interface.
+---
 
-   ```bash
-   streamlit run streamlit_app/Home.py
-   ```
+## 🧪 Testing
 
-3. Access the Streamlit URL in your browser to upload a resume and view the ATS analysis.
+The repository includes a comprehensive test suite covering APIs, authentication, document parsing, and database logic.
+Run the tests using Pytest:
 
-## Folder Structure
+```bash
+pytest tests/
+```
 
-- `app/` — FastAPI application package, including API routers, service logic, and database models.
-- `streamlit_app/` — Streamlit front-end application and UI components.
-- `data/` — Static supporting data, such as skills lists and stopword dictionaries.
-- `docs/` — Project design documentation and API reference material.
-- `docker/` — Dockerfile and docker-compose configuration for containerized deployment.
+---
 
-## Complete List of Dependencies
+## 📄 Documentation
 
-- `fastapi`
-- `streamlit`
-- `sqlalchemy`
-- `pydantic`
-- `sentence-transformers`
-- `spacy`
-- `uvicorn`
-- `jinja2`
+For deeper technical insights, please refer to the `docs/` folder:
+* [API Documentation](docs/API.md)
+* [System Architecture](docs/Architecture.md)
+* [Database Schema](docs/Database.md)
 
-## APIs Used
+---
 
-- **Google Gemini API** — Generative AI model used for dynamic resume rewriting and actionable improvement suggestions.
+## 🤝 Contributing
 
-## Libraries/Frameworks Used
-
-- **FastAPI** — Backend web framework for building modular, high-performance RESTful APIs.
-- **Streamlit** — Front-end framework for building the interactive resume analysis interface.
-- **SQLAlchemy** — Object-Relational Mapping (ORM) library for database interactions.
-- **Pydantic** — Used for data validation and schema definition within the FastAPI backend.
-- **sentence-transformers** — Used for generating semantic embeddings for resume and job description matching.
-- **spaCy** — Used for natural language processing tasks like keyword extraction and text parsing.
-
-## Additional Configuration Required
-
-All configurable parameters are defined through environment variables specified in the `.env` file.
-
-| Variable | Description |
-|---|---|
-| `SECRET_KEY` | Used to sign and verify JWT authentication tokens. |
-| `DATABASE_URL` | Specifies the database connection string, such as `sqlite:///./ai_resume_analyzer.db` for local development. |
-| `GEMINI_API_KEY` | Authenticates requests to the Google Gemini API. |
-| `BACKEND_HOST` & `BACKEND_PORT` | Network configuration for the backend server, defaulting to `127.0.0.1` and `8000`. |
-| `UPLOAD_DIR` | Local path for storing uploaded resumes and files, defaulting to `app/uploads`. |
+Contributions are always welcome! If you have ideas for new features or find a bug, please open an issue or submit a pull request.
