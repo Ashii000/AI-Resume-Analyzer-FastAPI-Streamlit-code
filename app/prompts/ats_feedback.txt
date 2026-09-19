@@ -1,0 +1,2 @@
+# Prompt for ATS feedback
+Analyze the resume and provide ATS-specific feedback and suggested keywords.

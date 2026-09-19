@@ -1,0 +1,2 @@
+# Prompt for interview question generation
+Produce technical and behavioral interview questions based on resume and job.

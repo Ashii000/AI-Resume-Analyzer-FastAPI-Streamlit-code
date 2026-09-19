@@ -1,0 +1,42 @@
+# Virtual environments
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# SQLite / DB files
+*.db
+*.sqlite3
+
+# Environment
+.env
+.env.*
+
+# Uploads & generated content
+app/uploads/
+_app_uploads/
+
+# IDEs & editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+
+# Logs
+logs/
+*.log
+
+# Build
+build/
+dist/

@@ -1,0 +1,2 @@
+# Prompt for personalized cover letter
+Generate a cover letter based on candidate resume and job description.

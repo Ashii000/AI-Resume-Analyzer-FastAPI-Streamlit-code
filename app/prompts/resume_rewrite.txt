@@ -1,0 +1,2 @@
+# Prompt for resume rewrite
+Rewrite the following resume section to be concise and achievement-focused.
